@@ -1,10 +1,12 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import {YellowBox} from 'react-native';
 import Routes from './routes';
 
 
 export default function App() {
-	YellowBox.ignoreWarnings(['Warning: ...']);
+	useEffect(() => {
+		YellowBox.ignoreWarnings([ 'DrawerLayoutAndroid drawerPosition','componentWillReceiveProps has been renamed']);
+	},[])
 	return (
 		<Routes/>
 	);

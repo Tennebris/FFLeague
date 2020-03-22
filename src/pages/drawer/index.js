@@ -14,25 +14,28 @@ const DrawerNavigator = createDrawerNavigator(
 		Home: {
 			screen: HomeScreen,
 			navigationOptions:{
-				title: 'Inicio'
+				title: 'Inicio',
+				drawerIcon: ({tintColor}) => <Icon name='home' size={16} />
 			}
 		},
 		Profile: {
 			screen: ProfileScreen,
 			navigationOptions:{
-				title: 'Perfil'
+				title: 'Perfil',
+				drawerIcon: ({tintColor}) => <Icon name='user' size={16} />
 			}
 		},
 		About: {
 			screen: AboutScreen,
 			navigationOptions:{
-				title: 'Sobre'
+				title: 'Suporte',
+				drawerIcon: ({tintColor}) => <Icon name='exclamation-circle' size={16} />
 			}
 		},
 	},
 	{
-		contentComponent: (props) => <SideBar {...props}></SideBar>,
-		drawerWidth: Dimensions.get('window').width * 0.65,
+		contentComponent: (props) => <SideBar {...props} />,
+		drawerWidth: Dimensions.get('window').width * 0.75,
 	}
 );
 

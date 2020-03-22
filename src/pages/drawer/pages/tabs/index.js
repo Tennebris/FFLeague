@@ -11,28 +11,28 @@ import SolicitScreen from './pages/solicit';
 
 const TabsNavigator = createBottomTabNavigator(
 	{
-		Menssager: {
-			screen: MenssagerScreen,
-			navigationOptions: () => ({
-		        tabBarIcon: ({ focused }) => (
-		          <Icon name="comments" size={22} color={focused ? '#35aa' : '#ddd'} />
-		        ),
-		        title: 'Bate-papo'
-		    }),
-		},
 		Feed:{
 			screen: FeedScreen,
 			navigationOptions: () => ({
 		        tabBarIcon: ({ focused }) => (
-		          <Icon name="lock" size={22} color={focused ? '#35aa' : '#ddd'} />
+		          <Icon name="home" size={22} color={focused ? '#35aa' : '#2079'} />
 		        ),
+		    }),
+		},
+		Menssager: {
+			screen: MenssagerScreen,
+			navigationOptions: () => ({
+		        tabBarIcon: ({ focused }) => (
+		          <Icon name="comments" size={22} color={focused ? '#35aa' : '#2079'} />
+		        ),
+		        title: 'Bate-papo'
 		    }),
 		},
 		Camps:{
 			screen: CampsScreen,
 			navigationOptions: () => ({
 		        tabBarIcon: ({ focused }) => (
-		          <Icon name="lock" size={22} color={focused ? '#35aa' : '#ddd'} />
+		          <Icon name="flag-checkered" size={22} color={focused ? '#35aa' : '#2079'} />
 		        ),
 		        title: 'Campeonatos'
 		    }),
@@ -41,26 +41,27 @@ const TabsNavigator = createBottomTabNavigator(
 			screen: SolicitScreen,
 			navigationOptions: () => ({
 		        tabBarIcon: ({ focused }) => (
-		          <Icon name="lock" size={22} color={focused ? '#35aa' : '#ddd'} />
+		          <Icon name="users" size={22} color={focused ? '#35aa' : '#2079'} />
 		        ),
 				title: 'Solicitações'
 		    }),
 		},
 	},{
 		tabBarOptions:{
-			activeTintColor: '#35aaff',
+			activeTintColor: '#0199',
 			style:{
 				height: 80,
+				backgroundColor: 'rgba(0,0,0,0)',
+				borderTopWidth: 0,
 			},
 			tabStyle:{
 				padding: 15,
-				paddingTop: 22
+				paddingTop: 22,
 			},
 			labelStyle:{
 				fontSize: 12,
 				margin: 5,
 			},
-			labelPosition: 'below-icon',
 		}
 	}
 );
