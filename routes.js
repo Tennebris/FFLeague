@@ -6,16 +6,10 @@ import RegisterScreen from "./src/pages/register";
 import DrawerScreen from "./src/pages/drawer/index";
 
 export default createStackNavigator({
-    Drawer: {
-        screen: DrawerScreen,
-        navigationOptions:{
-            header: null
-        }
-    },
     Welcome: {
         screen: WelcomeScreen,
         navigationOptions:{
-  		    header: null
+            header: null
         }
     },
     Register: {
@@ -26,6 +20,12 @@ export default createStackNavigator({
     },
     Login: {
         screen: LoginScreen,
+        navigationOptions:{
+            header: null
+        }
+    },
+    Drawer: {
+        screen: DrawerScreen,
         navigationOptions:{
             header: null
         }
