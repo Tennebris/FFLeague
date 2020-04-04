@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
+import {NavigationActions} from 'react-native';
+
 
 export default function profile({navigation}){
 	return(

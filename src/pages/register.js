@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {View, TextInput, StyleSheet, TouchableOpacity, TouchableHighlight, Text, Alert} from 'react-native';
+import React, {useState,useEffect} from 'react';
+import {View, TextInput, TouchableOpacity, Text, Alert,AsyncStorage} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {LinearGradient} from 'expo-linear-gradient';
 
 import styles from './styles/register.css';
 
-import background from '../../assets/img/062.jpg';
+import api from '../services/api'
 
 Icon.loadFont();
 
@@ -16,20 +16,46 @@ export default function login({navigation}){
 	const [ispass, setIsPass] = useState(true);
 	const [iconpass, setIconPass] = useState('eye');
 
+	const [email,setEmail] = useState();
+	const [idff,setIdff] = useState();
+	const [password,setPassword] = useState();
+
+	async function registerUser(){
+		const data = {
+			idff,
+			email,
+			password
+		};
+
+		try {
+			const response = await api.post('/auth/register',data);
+			
+			const { user, token } = response.data; 
+
+			await AsyncStorage.multiSet([
+				['@FFLeague:token', token],
+				['@FFLeague:user', JSON.stringify(user)],
+			]);
+
+			Alert.alert("Cadastro com sucesso");
+		}catch(e){
+			Alert.alert(`${e.response.data.error}`);
+		}
+	}
 
 	return(
 		<LinearGradient 
 			style={styles.container}
-			colors={['#35aaff','#000']}
+			colors={['#121212','#121212']}
 		>
 			{/* View LOGO */}
 			<View style={[styles.base,{flex: 1}]}>
-				<Icon name="social-facebook" style={styles.logoMain} size={250} color="#FFF" />
+				<Icon name="account-alert-outline" style={styles.logoMain} size={250} color="#FFF" />
 			</View>
 			{/* View CARDS INPUTS */}
 			<View style={[styles.card,styles.base,{flex: 1,marginVertical: 180}]}>
 				
-				<View style={[styles.containerInput,{borderTopLeftRadius: 20,borderTopRightRadius: 20,borderBottomWidth: 2,borderBottomColor: '#ddd'}]}>
+				<View style={[styles.containerInput,{borderTopLeftRadius: 10,borderTopRightRadius: 10,borderBottomWidth: 2,borderBottomColor: '#ddd'}]}>
 					<Icon name="email-outline" size={35} color="#000" />
 					<TextInput 
 						placeholder='Email'
@@ -37,6 +63,7 @@ export default function login({navigation}){
 						style={styles.input}
 						keyboardType={'email-address'}
 						returnKeyType={'next'}
+						onChangeText={text => setEmail(text)}
 						onSubmitEditing={() => {input1.focus();}}
 					/>
 				</View>
@@ -48,13 +75,14 @@ export default function login({navigation}){
 						ref={(campo) => setInput1(campo)}
 						placeholderTextColor='#a0a0a0'
 						style={styles.input}
-						keyboardType={'email-address'}
+						keyboardType={'numeric'}
 						returnKeyType={'next'}
+						onChangeText={text => setIdff(String(text))}
 						onSubmitEditing={() => {input2.focus();}}
 					/>
 				</View>
 				
-				<View style={[styles.containerInput,{borderBottomLeftRadius: 20,borderBottomRightRadius: 20}]}>
+				<View style={[styles.containerInput,{borderBottomLeftRadius: 10,borderBottomRightRadius: 10}]}>
 					<Icon name="lock" size={35} color="#000" />
 					<TextInput 
 						placeholder='Senha'
@@ -63,6 +91,7 @@ export default function login({navigation}){
 						secureTextEntry={ispass}
 						style={[styles.input,{width: '63.8%'}]}
 						returnKeyType={'next'}
+						onChangeText={text => setPassword(text)}
 					/>
 					<TouchableOpacity
 						onPress={() => {
@@ -77,17 +106,26 @@ export default function login({navigation}){
 					>
 						<Icon name={iconpass} size={32} color="#000" />
 					</TouchableOpacity>
+			</View>
+				</View>
+				<View style={styles.lateral}>
+					<TouchableOpacity
+						style={styles.submit}
+						onPress={() => {navigation.navigate('Login')}}
+					>
+						<Text style={styles.submitText}>Login</Text>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={styles.submit}
+						onPress={registerUser}
+					>
+						<Text style={styles.submitText}>Register</Text>
+					</TouchableOpacity>
+
 				</View>
 
-				<TouchableHighlight
-					style={styles.submit}
-				>
-					<Text style={styles.submitText}>Register</Text>
-				</TouchableHighlight>
-			</View>
-
 			{/* View REDES SOCIAIS */}
-			<View style={styles.base}>
+			<View style={[styles.base]}>
 				<View style={styles.lateral}>
 					<View style={styles.linha}></View>
 					<Text style={{color: 'rgba(255,255,255,0.4)',fontWeight:'bold'}}>Ou</Text>

@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, TouchableOpacity, Image, StatusBar, Alert} from 'react-native';
+import { View, Text, TouchableOpacity, Image, StatusBar, Alert, AsyncStorage} from 'react-native';
 import * as Font from 'expo-font';
 import {LinearGradient} from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import logo1 from '../../assets/img/033.jpg';
-import logo2 from '../../assets/img/045.jpg';
-import logo3 from '../../assets/img/052.jpg';
-import logo4 from '../../assets/img/055.jpg';
-import logo5 from '../../assets/img/062.jpg';
-import logo6 from '../../assets/img/073.jpg';
+import logo1 from '../assets/img/033.jpg';
+import logo2 from '../assets/img/045.jpg';
+import logo3 from '../assets/img/052.jpg';
+import logo4 from '../assets/img/055.jpg';
+import logo5 from '../assets/img/062.jpg';
+import logo6 from '../assets/img/073.jpg';
 
 import styles from './styles/welcome.css';
 
@@ -18,25 +18,40 @@ export default function welcome({navigation}){
 	const [isLoader,setIsLoader] = useState(false);
 
 	useEffect(() => {
+		let isCanceled = false;
+		async function setroute(){
+			try {
+				if(!isCanceled)
+					await AsyncStorage.setItem('@FFLeague:route','Login');
+			} catch (error) {
+				console.warn(error);
+			}
+		}
+		setroute();
+		return () => {
+			isCanceled = true;
+		}
+	},[])
+
+	useEffect(() => {
 		async function load(){
-			await Font.loadAsync({
-				'fontGarena': require('../../assets/fonts/garena.otf'),
-			});
-			setIsLoader(true);
+			try{
+				await Font.loadAsync({
+					'fontGarena': require('../assets/fonts/garena.otf'),
+				});
+				setIsLoader(true);
+			}catch(e){
+				console.warn(e);
+			}
 		}
 		load();
-	},[])
+	},[]);
 
 	return(
 		<LinearGradient 
 			style={styles.conteiner}
-			colors={['#35aaff','#000']}
+			colors={['#121212','#121212']}
 		>
-			<StatusBar
-				translucent={true}
-				hidden={false}
-				barStyle="dark-content"
-			/>
 			<View style={[styles.base,{flex:4}]}>
 				<Image
 					source={logo1}

@@ -67,16 +67,18 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 40
 	},
 	logoMain:{
-		marginTop: 250
+		// marginTop: 250
 	},
 	submit:{
 		backgroundColor: '#35aaff',
-		width: '50%',
+		width: '38.2%',
 		height: 55,
-		bottom: 20,
+		// bottom: 20,
+		top: 20,
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: 10,
+		marginHorizontal: 10
 	},
 	linha:{
 		backgroundColor: '#ddd',
@@ -98,6 +100,16 @@ const styles = StyleSheet.create({
 	},
 	rela:{
 		position: 'absolute',
+	},
+	loading:{
+		backgroundColor: 'rgba(0,0,0,0.8)',
+		position: 'absolute',
+		zIndex: 2,
+		flex: 1,
+		width: '100%',
+		height: '100%',
+		justifyContent: 'center',
+		alignItems: 'center'
 	}
 });
 

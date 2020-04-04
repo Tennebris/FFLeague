@@ -71,12 +71,13 @@ const styles = StyleSheet.create({
 	},
 	submit:{
 		backgroundColor: '#35aaff',
-		width: '50%',
+		width: '38.2%',
 		height: 55,
 		bottom: 20,
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: 10,
+		marginHorizontal:10
 	},
 	linha:{
 		backgroundColor: '#ddd',

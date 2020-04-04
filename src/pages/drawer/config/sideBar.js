@@ -1,23 +1,21 @@
 import React from 'react';
-import {View, Text, ScrollView, StyleSheet,ImageBackground,Image } from 'react-native';
-import { DrawerItems, SafeAreaView } from 'react-navigation';
+import {View, Text, ScrollView,ImageBackground } from 'react-native';
+import { DrawerItemList } from '@react-navigation/drawer';
 
-export default SliderBar = (props) => (
-	<ScrollView>
-  		<ImageBackground
-  			source={require('./../../../../assets/img/073.jpg')}
-  			style={{width: undefined,height: 200}}
-  		>
-  			<Text>hkdwqkhdkqwh</Text>
-  		</ImageBackground>
-  		<View>
-  			<DrawerItems {...props}/>
-  		</View>
-  	</ScrollView>
-);
+export default SliderBar = (props) => {
+	return(
+		<ScrollView>
+			<ImageBackground
+				source={require('../../../assets/img/073.jpg')}
+				style={{width: undefined,height: 200}}
+				blurRadius={5}
+			>	
+			</ImageBackground>
+			
+			<View>
+				<DrawerItemList {...props}/>
+			</View>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+		</ScrollView>
+	);
+};
