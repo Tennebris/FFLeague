@@ -1,0 +1,2 @@
+++ System limit for number of file watchers reached.
+== echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf && sysctl -p

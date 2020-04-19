@@ -30,12 +30,12 @@ export default function login({navigation}){
 		try {
 			setLoading(true);
 			setIsLogged(false);
-			const response = await api.post('/auth/authenticate',data);
+			const response = await api.post('/authenticate',data);
 
-			const { user, token } = response.data; 
+			const { user } = response.data; 
 			
 			await AsyncStorage.multiSet([
-				['@FFLeague:token', token],
+				['@FFLeague:teste', 'rato'],
 				['@FFLeague:user', JSON.stringify(user)],
 			]);
 			
@@ -43,7 +43,7 @@ export default function login({navigation}){
 			setLoading(false);
 		}catch(e){
 			setLoading(false);
-			Alert.alert(`${e.response.data.error}`);
+			Alert.alert(`${e}`);
 		}
 	}
 	useEffect(() => {

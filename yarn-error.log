@@ -1,21 +1,23 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js add expo-cli
+  /usr/local/bin/node /usr/share/yarn/bin/yarn.js add react-native-sticky-parallax-header
 
 PATH: 
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/android/sdk/tools:/root/android/sdk/platform-tools:/root/android/sdk/tools:/root/android/sdk/platform-tools
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 Yarn version: 
-  1.21.1
+  1.22.4
 
 Node version: 
-  12.14.1
+  12.16.2
 
 Platform: 
   linux x64
 
 Trace: 
-  Error: connect EHOSTUNREACH 104.16.22.35:443
-      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1134:16)
+  Error: https://registry.yarnpkg.com/react-native-sticky-parallax-header: ETIMEDOUT
+      at Timeout._onTimeout (/usr/share/yarn/lib/cli.js:141408:19)
+      at listOnTimeout (internal/timers.js:549:17)
+      at processTimers (internal/timers.js:492:7)
 
 npm manifest: 
   {

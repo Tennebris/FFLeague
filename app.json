@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "FFLeague",
-    "slug": "ffleague",
+    "name": "FF Champions League",
+    "slug": "FFCL",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -15,7 +15,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -27,16 +27,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.dark.ffleague"
-    },
-    "extra": {
-      "expo": {
-        "test": {
-          "message": "I am a message"
-        },
-        "FIRE_BASE": {}
-      }
-    },
-    "description": "sei la"
+      "package": "com.darkness.ffleague"
+    }
   }
 }

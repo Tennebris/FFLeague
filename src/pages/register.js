@@ -3,6 +3,8 @@ import {View, TextInput, TouchableOpacity, Text, Alert,AsyncStorage} from 'react
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {LinearGradient} from 'expo-linear-gradient';
 
+import {} from '@react-native-community'
+
 import styles from './styles/register.css';
 
 import api from '../services/api'
@@ -28,15 +30,16 @@ export default function login({navigation}){
 		};
 
 		try {
-			const response = await api.post('/auth/register',data);
+			const response = await api.post('/registration',data);
 			
-			const { user, token } = response.data; 
-
+			const { user } = response.data; 
+			
 			await AsyncStorage.multiSet([
-				['@FFLeague:token', token],
+				['@FFLeague:teste', 'rato'],
 				['@FFLeague:user', JSON.stringify(user)],
 			]);
-
+			
+			console.warn('aqui');
 			Alert.alert("Cadastro com sucesso");
 		}catch(e){
 			Alert.alert(`${e.response.data.error}`);
