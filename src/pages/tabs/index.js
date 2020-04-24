@@ -1,24 +1,28 @@
 import React from 'react';
 import {createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon1 from 'react-native-vector-icons/MaterialIcons';
 
 // Pages
 import MenssagerScreen from './pages/menssager';
 import FeedScreen from './pages/feed';
 import CampsScreen from './pages/camps';
 import SolicitScreen from './pages/solicit';
+import ProfileScreen from './pages/profile';
 
 const AppTabs = createBottomTabNavigator();
 
-export default function RouterTabs(){
+export default function RouterTabs({header}){
 	return(
 		<AppTabs.Navigator
 			tabBarOptions={{
 				showLabel:false,
 				style:{
 					height: 70,
-					borderTopWidth: 0
-				}
+					borderTopWidth: 0,
+					backgroundColor: '#202020'
+				},
 			}}
 		>
 			<AppTabs.Screen 
@@ -26,7 +30,7 @@ export default function RouterTabs(){
 				component={FeedScreen}
 				options={{
 					tabBarIcon:({focused}) => (
-						<Icon name="home" size={25} color={focused ? '#35aa' : '#999'} />
+						<Icon name="home" size={25} color={focused ? '#35aaff' : '#fff'} />
 					)
 				}}
 			/>
@@ -35,7 +39,7 @@ export default function RouterTabs(){
 				component={MenssagerScreen}
 				options={{
 					tabBarIcon:({focused}) => (
-						<Icon name="comments" size={25} color={focused ? '#35aa' : '#999'} />
+						<Icon1 name="message" size={25} color={focused ? '#35aaff' : '#fff'} />
 					)
 				}}
 			/>
@@ -44,16 +48,25 @@ export default function RouterTabs(){
 				component={CampsScreen}
 				options={{
 					tabBarIcon:({focused}) => (
-						<Icon name="flag-checkered" size={25} color={focused ? '#35aa' : '#999'} />
+						<Icon name="flag-checkered" size={25} color={focused ? '#35aaff' : '#fff'} />
 					)
 				}}
 			/>
 			<AppTabs.Screen 
-				name="Solict" 
+				name="Solictation" 
 				component={SolicitScreen}
 				options={{
 					tabBarIcon:({focused}) => (
-						<Icon name="users" size={25} color={focused ? '#35aa' : '#999'} />
+						<Icon name="users" size={25} color={focused ? '#35aaff' : '#fff'} />
+					)
+				}}
+			/>
+			<AppTabs.Screen 
+				name="Profile" 
+				component={ProfileScreen}
+				options={{
+					tabBarIcon:({focused}) => (
+						<Icon name="user-alt" size={25} color={focused ? '#35aaff' : '#fff'} />
 					)
 				}}
 			/>

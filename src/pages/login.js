@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import {View, TextInput, Alert, TouchableOpacity, TouchableHighlight, Text, AsyncStorage, ActivityIndicator} from 'react-native';
+import {View, TextInput, Alert, TouchableOpacity, TouchableHighlight, AsyncStorage, Text, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {LinearGradient} from 'expo-linear-gradient';
 
@@ -35,7 +35,6 @@ export default function login({navigation}){
 			const { user } = response.data; 
 			
 			await AsyncStorage.multiSet([
-				['@FFLeague:teste', 'rato'],
 				['@FFLeague:user', JSON.stringify(user)],
 			]);
 			
@@ -43,12 +42,12 @@ export default function login({navigation}){
 			setLoading(false);
 		}catch(e){
 			setLoading(false);
-			Alert.alert(`${e}`);
+			Alert.alert(`${e.response.data.error}`);
 		}
 	}
 	useEffect(() => {
 		if(isLogged){
-			navigation.navigate('Drawer');
+			navigation.navigate('Tabs');
 		}
 	},[isLogged]);
 

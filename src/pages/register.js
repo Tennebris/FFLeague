@@ -1,9 +1,7 @@
 import React, {useState,useEffect} from 'react';
-import {View, TextInput, TouchableOpacity, Text, Alert,AsyncStorage} from 'react-native';
+import {View, TextInput, TouchableOpacity, Text, Alert, AsyncStorage} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {LinearGradient} from 'expo-linear-gradient';
-
-import {} from '@react-native-community'
 
 import styles from './styles/register.css';
 
@@ -34,13 +32,11 @@ export default function login({navigation}){
 			
 			const { user } = response.data; 
 			
-			await AsyncStorage.multiSet([
-				['@FFLeague:teste', 'rato'],
-				['@FFLeague:user', JSON.stringify(user)],
-			]);
+			await AsyncStorage.setItem('@FFLeague:user', JSON.stringify(user));
 			
-			console.warn('aqui');
 			Alert.alert("Cadastro com sucesso");
+
+			navigation.navigate('Login');
 		}catch(e){
 			Alert.alert(`${e.response.data.error}`);
 		}

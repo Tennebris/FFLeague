@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { View, Text, TouchableOpacity, Image, StatusBar, Alert, AsyncStorage} from 'react-native';
+import { View, Text, TouchableOpacity, Image, AsyncStorage, Alert} from 'react-native';
 import * as Font from 'expo-font';
 import {LinearGradient} from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
