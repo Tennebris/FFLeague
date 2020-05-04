@@ -4,12 +4,12 @@ import * as Font from 'expo-font';
 import {LinearGradient} from 'expo-linear-gradient';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import logo1 from '../assets/img/033.jpg';
-import logo2 from '../assets/img/045.jpg';
-import logo3 from '../assets/img/052.jpg';
-import logo4 from '../assets/img/055.jpg';
-import logo5 from '../assets/img/062.jpg';
-import logo6 from '../assets/img/073.jpg';
+import logo1 from '../../../assets/img/033.jpg';
+import logo2 from '../../../assets/img/045.jpg';
+import logo3 from '../../../assets/img/052.jpg';
+import logo4 from '../../../assets/img/055.jpg';
+import logo5 from '../../../assets/img/062.jpg';
+import logo6 from '../../../assets/img/073.jpg';
 
 import styles from './styles/welcome.css';
 
@@ -37,7 +37,7 @@ export default function welcome({navigation}){
 		async function load(){
 			try{
 				await Font.loadAsync({
-					'fontGarena': require('../assets/fonts/garena.otf'),
+					'fontGarena': require('../../../assets/fonts/garena.otf'),
 				});
 				setIsLoader(true);
 			}catch(e){

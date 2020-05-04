@@ -1,12 +1,25 @@
-import React,{ useEffect, useState } from 'react';
 import 'react-native-gesture-handler';
-import {YellowBox,StatusBar, AsyncStorage, View} from 'react-native';
-import Routes from './routes';
 
+import React,{ useEffect, useState } from 'react';
+import {YellowBox,StatusBar, AsyncStorage, View, Text, Animated} from 'react-native';
+import { useNetInfo } from "@react-native-community/netinfo";
+
+import { NavigationContainer } from '@react-navigation/native';
+
+import { AuthProvider } from './Contexts/auth';
+import Routes from './Routes/index';
+import Span from "./Span";
 
 export default function App() {
+	const netinfo = useNetInfo();
+	const SpanAnimaded = Animated.createAnimatedComponent(Span);
+
+	const [op, setOp] = useState(0);
+
 	const [router, setRouter] = useState();
 	const [loaded, setLoaded] = useState(false);
+	const [connection, setConnection] = useState();
+
 
 	useEffect(() => {
 		let isCancelled = false;
@@ -14,7 +27,6 @@ export default function App() {
 			try {
 				if(!isCancelled){
 					setLoaded(false);
-					// await AsyncStorage.clear();
 					const userAsync = await AsyncStorage.getItem('@FFLeague:user');
 					const routerAsync = await AsyncStorage.getItem('@FFLeague:route');
 					!!userAsync ? setRouter("Tabs") : setRouter(routerAsync);
@@ -35,10 +47,32 @@ export default function App() {
 		}
 	},[]);
 
+	useEffect(() => {
+		if(netinfo.isConnected){
+			setConnection('Connected!');
+		}else{
+			setConnection('Disconnected!');
+		}
+	},[netinfo]);
+	useEffect(() => {
+		setTimeout(() => {
+			const opacity = new Animated.Value(1);
+			Animated.timing( opacity, {
+				toValue: 0,
+				duration: 1000,
+				useNaviteDriver: true,
+			}).start();
+			setOp(opacity);
+		}, 1);
+	},[netinfo]);
+
 	return (
-		<>
-			<StatusBar barStyle='light-content' hidden={true}/>
-			{ loaded && <Routes route={router}/> }
-		</>
+		<NavigationContainer>
+			<AuthProvider>
+				<StatusBar barStyle='dark-content' hidden={true}/>
+				{ loaded && <Routes route={router}/> }
+				<SpanAnimaded state={connection} opacity={op}/>
+			</AuthProvider>
+		</NavigationContainer>
 	);
 }

@@ -1,59 +1,56 @@
-import React, {useState,useEffect} from 'react';
-import {View, TextInput, TouchableOpacity, Text, Alert, AsyncStorage} from 'react-native';
+import React, {useState,useEffect,useContext} from 'react';
+import {View, TextInput, Alert, TouchableOpacity, TouchableHighlight, AsyncStorage, Text, ActivityIndicator} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {LinearGradient} from 'expo-linear-gradient';
 
-import styles from './styles/register.css';
+import AuthContext from '../../../Contexts/auth';
 
-import api from '../services/api'
-
-Icon.loadFont();
+import styles from './styles/login.css';
 
 export default function login({navigation}){
-	const [input1, setInput1] = useState();
-	const [input2, setInput2] = useState();
+	Icon.loadFont();
+
+	const {login} = useContext(AuthContext);
+
+	const [input, setInput] = useState();
 	
 	const [ispass, setIsPass] = useState(true);
 	const [iconpass, setIconPass] = useState('eye');
 
-	const [email,setEmail] = useState();
-	const [idff,setIdff] = useState();
-	const [password,setPassword] = useState();
+	const [email, setEmail] = useState(null);
+	const [password, setPassword] = useState(null);
 
-	async function registerUser(){
-		const data = {
-			idff,
-			email,
-			password
-		};
+	const [loading, setLoading] = useState(false);
 
-		try {
-			const response = await api.post('/registration',data);
-			
-			const { user } = response.data; 
-			
-			await AsyncStorage.setItem('@FFLeague:user', JSON.stringify(user));
-			
-			Alert.alert("Cadastro com sucesso");
+	function handleLogin(){
+		setLoading(true);
 
-			navigation.navigate('Login');
-		}catch(e){
-			Alert.alert(`${e.response.data.error}`);
-		}
+		login(email,password)
+
+		setLoading(false);
 	}
 
 	return(
 		<LinearGradient 
-			style={styles.container}
-			colors={['#121212','#121212']}
+		style={styles.container}
+		colors={['#121212','#121212']}
 		>
+			{loading && 
+				<View style={styles.loading}>
+					<ActivityIndicator size="large" color="white"/>
+					<Text
+						style={{fontSize: 17,color:'white'}}
+					>Carrengando...</Text>
+				</View>
+			}
+
 			{/* View LOGO */}
-			<View style={[styles.base,{flex: 1}]}>
-				<Icon name="account-alert-outline" style={styles.logoMain} size={250} color="#FFF" />
+			<View style={[styles.base,{flex: 1,marginTop:80}]}>
+				<Icon name="windows" style={styles.logoMain} size={250} color="#FFF" />
 			</View>
+
 			{/* View CARDS INPUTS */}
-			<View style={[styles.card,styles.base,{flex: 1,marginVertical: 180}]}>
-				
+			<View style={[styles.card,styles.base,{flex: 1,marginVertical: 100}]}>
 				<View style={[styles.containerInput,{borderTopLeftRadius: 10,borderTopRightRadius: 10,borderBottomWidth: 2,borderBottomColor: '#ddd'}]}>
 					<Icon name="email-outline" size={35} color="#000" />
 					<TextInput 
@@ -63,34 +60,20 @@ export default function login({navigation}){
 						keyboardType={'email-address'}
 						returnKeyType={'next'}
 						onChangeText={text => setEmail(text)}
-						onSubmitEditing={() => {input1.focus();}}
+						onSubmitEditing={() => {input.focus();}}
 					/>
 				</View>
 
-				<View style={[styles.containerInput,{borderBottomWidth: 2,borderBottomColor: '#ddd'}]}>
-					<Icon name="account" size={35} color="#000" />
-					<TextInput 
-						placeholder='ID User'
-						ref={(campo) => setInput1(campo)}
-						placeholderTextColor='#a0a0a0'
-						style={styles.input}
-						keyboardType={'numeric'}
-						returnKeyType={'next'}
-						onChangeText={text => setIdff(String(text))}
-						onSubmitEditing={() => {input2.focus();}}
-					/>
-				</View>
-				
 				<View style={[styles.containerInput,{borderBottomLeftRadius: 10,borderBottomRightRadius: 10}]}>
 					<Icon name="lock" size={35} color="#000" />
 					<TextInput 
 						placeholder='Senha'
-						ref={(campo) => setInput2(campo)}
+						ref={(campo) => setInput(campo)}
 						placeholderTextColor='#a0a0a0'
 						secureTextEntry={ispass}
 						style={[styles.input,{width: '63.8%'}]}
-						returnKeyType={'next'}
 						onChangeText={text => setPassword(text)}
+						returnKeyType={'next'}
 					/>
 					<TouchableOpacity
 						onPress={() => {
@@ -105,26 +88,26 @@ export default function login({navigation}){
 					>
 						<Icon name={iconpass} size={32} color="#000" />
 					</TouchableOpacity>
-			</View>
 				</View>
 				<View style={styles.lateral}>
-					<TouchableOpacity
+					<TouchableHighlight
 						style={styles.submit}
-						onPress={() => {navigation.navigate('Login')}}
-					>
-						<Text style={styles.submitText}>Login</Text>
-					</TouchableOpacity>
-					<TouchableOpacity
-						style={styles.submit}
-						onPress={registerUser}
+						onPress={() => {navigation.navigate('Register')}}
 					>
 						<Text style={styles.submitText}>Register</Text>
-					</TouchableOpacity>
+					</TouchableHighlight>
+					<TouchableHighlight
+						style={styles.submit}
+						onPress={handleLogin}
+					>
+						<Text style={styles.submitText}>Login</Text>
+					</TouchableHighlight>
 
 				</View>
+			</View>
 
 			{/* View REDES SOCIAIS */}
-			<View style={[styles.base]}>
+			<View style={styles.base}>
 				<View style={styles.lateral}>
 					<View style={styles.linha}></View>
 					<Text style={{color: 'rgba(255,255,255,0.4)',fontWeight:'bold'}}>Ou</Text>
