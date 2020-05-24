@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         flex: 1,
         paddingTop: constants.statusBarHeight + 25,
-        backgroundColor: "#fff",
+        backgroundColor: "#f0f0f0",
     },
     search:{
         width: '90%',

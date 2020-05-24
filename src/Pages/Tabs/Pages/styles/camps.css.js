@@ -5,16 +5,27 @@ const styles = StyleSheet.create({
     container:{
         paddingTop: constants.statusBarHeight + 20,
         flex: 1,
+    },
+    list: {
+        paddingHorizontal: 10
+    },
+    card:{
+        height: 300,
+        backgroundColor: '#fff',
+        marginBottom: 10,
+        borderRadius: 10,
+        padding: 30
+    },
+    cardText: {
+        fontSize: 20,
+        color: '#555',
+        fontWeight: '500',
+        marginVertical: 15
+    },
+    btn:{
         flexDirection: 'row',
-        backgroundColor: "#fff",
-        paddingHorizontal: 4,
-        flexWrap: 'wrap'
-    }, card:{
-        backgroundColor: '#e1e1e1',
-        width: (Dimensions.get('window').width) - 8,
-        margin: 2,
-        borderRadius: 8,
-        height: Dimensions.get('window').width/2.060,
+        justifyContent: 'space-between',
+        marginTop: 30
     }
 });
 

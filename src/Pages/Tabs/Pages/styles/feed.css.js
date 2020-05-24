@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         // justifyContent: "center",
         paddingTop: constants.statusBarHeight + 15,
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: "#f0f0f0",
     },
     post:{
         flex:1,

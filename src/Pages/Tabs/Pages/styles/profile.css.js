@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         paddingTop: constants.statusBarHeight - 10,
         // justifyContent: "center",
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: "#f0f0f0",
     },
     header:{
         // alignItems: 'center',

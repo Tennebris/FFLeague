@@ -22,7 +22,7 @@ export default function RouterTabs(){
 					height: 70,
 					borderTopWidth: 0,
 					elevation: 0,
-					backgroundColor: '#fff'
+					backgroundColor: '#f0f0f0'
 				},
 			}}
 

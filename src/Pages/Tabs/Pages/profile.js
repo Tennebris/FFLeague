@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {View, Text, AsyncStorage, TouchableHighlight, FlatList, SafeAreaView} from 'react-native';
-import { CommonActions } from '@react-navigation/native';
+// import { CommonActions } from '@react-navigation/native';
 
 import Icon1 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -9,18 +9,18 @@ import AuthContext from '../../../Contexts/auth';
 
 import styles from './styles/profile.css';
 
-export default function profile({navigation,header}){
+export default function profile({navigation}){
 
 	const {changeContext} = useContext(AuthContext);
 
 	const data = []
 
-	const navigateTo = (route) => {
-		const action = CommonActions.navigate({
-			name: route
-		});
-		navigation.dispatch(action);
-	}
+	// const navigateTo = (route) => {
+	// 	const action = CommonActions.navigate({
+	// 		name: route
+	// 	});
+	// 	navigation.dispatch(action);
+	// }
 
 	async function logout(){
 		try{

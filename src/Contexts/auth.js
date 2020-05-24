@@ -7,7 +7,6 @@ const AuthContext = createContext({logged: false});
 
 export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
-    const [isLogged, setIsLogged] = useState(!!user);
 
     const login = async (email, password) => {
 		const data = {
@@ -19,29 +18,28 @@ export const AuthProvider = ({children}) => {
 			const response = await api.post('/authenticate',data);
 
             setUser(response.data);
-            setIsLogged(!!user);
 			
 			await AsyncStorage.setItem('@FFCL:user', JSON.stringify(user));
-			
-		}catch(e){
+		}catch(e){ 
 			Alert.alert(`${e.response.data.error}`);
 		}
 	}
 
     const changeContext = () => {
-        setIsLogged(!isLogged);
+        setUser(null);
     }
 
     useEffect(() => {
         async function getUser(){
             const AsyncUser = await AsyncStorage.getItem('@FFCL:user');
-            setUser(AsyncUser)
+
+            setUser(AsyncUser);
         }
         getUser();
     },[])
 
     return(
-        <AuthContext.Provider value={{logged: isLogged, login, changeContext}}>
+        <AuthContext.Provider value={{logged: !!user, login, changeContext}}>
             {children}
         </AuthContext.Provider>
     )

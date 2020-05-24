@@ -1,0 +1,38 @@
+html, body{
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.view{
+    height: 50vh;
+}
+
+.map{
+    width: 15vw;
+    height: 32vh;
+
+    background-color: black;
+}
+
+input{
+    width: 8vw;
+    height: 18vh;
+
+    border-radius: 50%;
+    border: solid grey;
+}
+
+#pular{
+    position: absolute;
+
+    bottom: 0px;
+    right: 20px;
+}
