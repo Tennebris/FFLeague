@@ -28,7 +28,7 @@
     "react-native-sticky-parallax-header": "^0.0.61",
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "~0.11.7",
-    "react-native-webview": "7.4.3",
+    "react-native-webview": "11.0.0",
     "react-navigation": "^4.3.6"
   },
   "devDependencies": {
